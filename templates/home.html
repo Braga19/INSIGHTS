@@ -1,0 +1,67 @@
+{% extends "base.html"%} {% block title %}Home{% endblock %}
+
+{% block content%}
+<div class="container">
+  <h1 class="display-4 text-center my-4"><strong>INSIGHTS</strong></h1>
+  <p class="lead text-center">
+    <strong>I</strong>nteractive <strong>N</strong>arrative <strong>S</strong>ummary for <strong>I</strong>nsightful <strong>G</strong>athering of <strong>H</strong>elpful <strong>T</strong>ext <strong>S</strong>tatistics
+  </p>
+
+  <p class="lead">Welcome to our website designed for in-depth analysis of Ratings & Reviews (R&R). Our platform is divided into four key sections: R&R Distribution, Reviews Volume, Keywords Extractions, and Search Keywords. Each section provides unique insights and functionalities tailored to your needs. For more details about the plots and the key metrics, please see <a href="#infoSection">General Information</a></p>
+
+<h2 class="display-5 my-4">R&R Distribution</h2>
+<p class="lead">In this section, you have the ability to download reviews and choose a distribution frequency that suits your needs. Whether you're looking for daily, weekly, or monthly distributions, we've got you covered.</p>
+
+<h2 class="display-5 my-4">Reviews Volume</h2>
+<p class="lead">Here, you can visualize the volume of reviews over time. This can help you understand trends and patterns in user feedback, allowing you to make informed decisions.</p>
+
+<h2 class="display-5 my-4">Keywords Extractions</h2>
+<p class="lead">This section provides a visualization of the most frequently used words and pairs of words in the reviews. The plots is flexible and you can change parameters as you prefer. The text is pre-processed, including translation into English, lowercasing, punctuation removal, stopwords removal, and lemmatization (e.g. gone, goes or went --> go).</p>
+
+<h2 class="display-5 my-4">Search Keywords</h2>
+<p class="lead">Looking for something specific? In this section, you can search for specific keywords in the reviews. Once you've found what you're looking for, you can download the subset dataframe for further analysis.</p>
+
+<div class="accordion my-4" id="infoSection">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            General Information <i class="fa fa-chevron-down pull-right"></i>
+          </button>
+        </h2>
+      </div>
+  
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#infoSection">
+        <div class="card-body">
+          <h3 class="my-3">Interactive Plots</h3>
+          <p class="lead">All plots on this website are interactive. Hovering over specific points on the plots will reveal more detailed insights. Please note that a dotted line on a plot indicates that the data is incomplete.</p>
+  
+          <h3 class="my-3">Key Metrics</h3>
+          <p class="lead">We use two main key metrics to provide a comprehensive analysis of Ratings & Reviews (R&R).</p>
+  
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Lifetime Rating</strong>: This is the cumulative rating displayed in the app stores for both Android and iOS platforms. It encompasses individual ratings as well as ratings from written reviews. For Android, the weighted average is calculated with the following formula: <strong>(cumulative_avg_general*0.9) + (avg_rating_reviews*0.1)</strong>.
+            </li>
+            <li class="list-group-item">
+              <strong>Rating with written reviews</strong>: This metric solely considers ratings derived from written reviews.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+
+<script>
+    $(document).ready(function(){
+      $('.collapse').on('shown.bs.collapse', function(){
+        $(this).parent().find(".fa-chevron-down").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+      }).on('hidden.bs.collapse', function(){
+        $(this).parent().find(".fa-chevron-up").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+      });
+    });
+    </script>
+{% endblock %}

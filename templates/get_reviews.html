@@ -1,0 +1,41 @@
+{% extends "base.html"%} {% block title %}Reviews{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {{ reviews_form.hidden_tag() }}
+    {{ reviews_form.start_date.label }}<br>
+    {{ reviews_form.start_date }}<br>
+    {{ reviews_form.end_date.label }}<br>
+    {{ reviews_form.end_date }}<br>
+    {{ reviews_form.output_type.label }}<br>
+    {{ reviews_form.output_type }}<br>
+    {{ reviews_form.submit }}
+</form>
+
+<script>
+document.getElementById('download_button').disabled = true;
+    
+document.querySelector('form').onsubmit = function() {
+    // Enable the download button when the form is submitted
+    document.getElementById('download_button').disabled = false;
+};
+</script>   
+<a href="/download_reviews" class="btn btn-primary" id="download_button">Download Reviews</a>
+<a href="/clear_session">Clear Session</a>
+
+   
+
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<div id='chart' class='chart'></div>
+
+
+<script type='text/javascript'>
+
+ var graphs = {{graph_JSON|safe}};
+
+  Plotly.plot('chart',graphs,{});
+
+</script>
+
+
+{% endblock %}

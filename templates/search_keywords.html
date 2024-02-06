@@ -1,0 +1,22 @@
+{% extends "base.html"%} {% block title %}Search Keywords{% endblock %}
+
+
+{% block content %}
+
+<form method="POST">
+    {{ search_pattern_form.hidden_tag() }}
+    {{ search_pattern_form.pattern.label }} {{ search_pattern_form.pattern() }}
+    {{ search_pattern_form.platform.label }} {{ search_pattern_form.platform() }}
+    <input type="submit" name="search_pattern_form_submit" value="Get Reviews">
+  </form>
+  <a href="/download_subset" class="btn btn-primary" id="download_button">Download</a>  
+
+ {% if subset_df %} 
+
+  <div>
+    {{ subset_df|safe }}
+  </div>
+
+ {% endif %}
+
+{% endblock %}

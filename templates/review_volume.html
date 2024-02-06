@@ -1,0 +1,42 @@
+{% extends "base.html"%} {% block title %}Reviews Volume{% endblock %}
+
+{% block content %}
+
+
+<form method="POST">
+    {{ distribution_form.hidden_tag() }}
+    {{ distribution_form.start_date.label }} {{ distribution_form.start_date() }}
+    {{ distribution_form.end_date.label }} {{ distribution_form.end_date() }}
+    <input type="submit" name="distribution_form_submit" value="Plot Timeseries">
+</form>
+
+
+
+
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<div id='monthly_chart' class='chart'></div>
+<div id='weekly_chart' class='chart'></div>
+
+
+
+<script type='text/javascript'>
+
+ var monthly = {{monthly_reviews_volume_plot|safe}};
+
+  Plotly.plot('monthly_chart',monthly,{});
+
+</script>
+
+
+<script type='text/javascript'>
+
+    var weekly = {{weekly_reviews_volume_plot|safe}};
+   
+     Plotly.plot('weekly_chart',weekly,{});
+   
+   </script>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,28 @@
+{% extends "base.html"%} {% block title %}Keywords Extraction{% endblock %}
+
+
+{% block content %}
+
+<form method="POST">
+    {{ keywords_form.hidden_tag() }}
+    {{ keywords_form.form.label }} {{ keywords_form.form() }}
+    {{ keywords_form.polar.label }} {{ keywords_form.polar() }}
+    {{ keywords_form.platform.label }} {{ keywords_form.platform() }}
+    {{ keywords_form.n.label }} {{ keywords_form.n() }}
+    {{ keywords_form.date.label }} {{ keywords_form.date() }}
+    <input type="submit" name="keywords_form_submit", value="Get Keywords">
+</form>
+
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<div id='keywords' class='chart'></div>
+
+
+<script type='text/javascript'>
+
+        var keywords = {{plot_keywords|safe}};
+    
+        Plotly.plot('keywords',keywords,{});
+    
+   </script>
+
+{% endblock %}
